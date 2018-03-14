@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC420596ECA00292D8D /* AppDelegate.swift */; };
-		5B322FC720596ECB00292D8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC620596ECB00292D8D /* ViewController.swift */; };
+		5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC620596ECB00292D8D /* LoginViewController.swift */; };
 		5B322FCA20596ECB00292D8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FC820596ECB00292D8D /* Main.storyboard */; };
 		5B322FCC20596ECB00292D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FCB20596ECB00292D8D /* Assets.xcassets */; };
 		5B322FCF20596ECB00292D8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FCD20596ECB00292D8D /* LaunchScreen.storyboard */; };
+		5B322FD720596F4300292D8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FD620596F4300292D8D /* GoogleService-Info.plist */; };
+		5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */; };
+		5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */; };
+		A6EE9FC0898D16B9FBA1B9F0 /* Pods_DTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E442240F10D42F66F4FA37C /* Pods_DTT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B322FC120596ECA00292D8D /* DTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B322FC420596ECA00292D8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B322FC620596ECB00292D8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B322FC620596ECB00292D8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5B322FC920596ECB00292D8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B322FCB20596ECB00292D8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B322FCE20596ECB00292D8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B322FD020596ECB00292D8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B322FD620596F4300292D8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		7E442240F10D42F66F4FA37C /* Pods_DTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8854894644AE5DB1D45C0B5 /* Pods-DTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTT.release.xcconfig"; path = "Pods/Target Support Files/Pods-DTT/Pods-DTT.release.xcconfig"; sourceTree = "<group>"; };
+		C752044EA211C7A6ECABD082 /* Pods-DTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTT/Pods-DTT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6EE9FC0898D16B9FBA1B9F0 /* Pods_DTT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +51,8 @@
 			children = (
 				5B322FC320596ECA00292D8D /* DTT */,
 				5B322FC220596ECA00292D8D /* Products */,
+				97049EBFF9B03EC7A8926276 /* Pods */,
+				CFFA1E9BB5E66C8A43DF0E10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +67,50 @@
 		5B322FC320596ECA00292D8D /* DTT */ = {
 			isa = PBXGroup;
 			children = (
+				5BD76D962059B1A600AEE740 /* Login */,
+				5BD76D952059B19B00AEE740 /* FriendList */,
+				5B322FD620596F4300292D8D /* GoogleService-Info.plist */,
 				5B322FC420596ECA00292D8D /* AppDelegate.swift */,
-				5B322FC620596ECB00292D8D /* ViewController.swift */,
 				5B322FC820596ECB00292D8D /* Main.storyboard */,
 				5B322FCB20596ECB00292D8D /* Assets.xcassets */,
 				5B322FCD20596ECB00292D8D /* LaunchScreen.storyboard */,
 				5B322FD020596ECB00292D8D /* Info.plist */,
 			);
 			path = DTT;
+			sourceTree = "<group>";
+		};
+		5BD76D952059B19B00AEE740 /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */,
+				5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */,
+			);
+			path = FriendList;
+			sourceTree = "<group>";
+		};
+		5BD76D962059B1A600AEE740 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5B322FC620596ECB00292D8D /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		97049EBFF9B03EC7A8926276 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C752044EA211C7A6ECABD082 /* Pods-DTT.debug.xcconfig */,
+				A8854894644AE5DB1D45C0B5 /* Pods-DTT.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CFFA1E9BB5E66C8A43DF0E10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E442240F10D42F66F4FA37C /* Pods_DTT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +120,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B322FD320596ECB00292D8D /* Build configuration list for PBXNativeTarget "DTT" */;
 			buildPhases = (
+				2595FE0DAEC0A4CE464B7768 /* [CP] Check Pods Manifest.lock */,
 				5B322FBD20596ECA00292D8D /* Sources */,
 				5B322FBE20596ECA00292D8D /* Frameworks */,
 				5B322FBF20596ECA00292D8D /* Resources */,
+				363287DFDABF4E1072E2CD4A /* [CP] Embed Pods Frameworks */,
+				D49238F2F01A4D94FDC11664 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B322FCF20596ECB00292D8D /* LaunchScreen.storyboard in Resources */,
+				5B322FD720596F4300292D8D /* GoogleService-Info.plist in Resources */,
 				5B322FCC20596ECB00292D8D /* Assets.xcassets in Resources */,
 				5B322FCA20596ECB00292D8D /* Main.storyboard in Resources */,
 			);
@@ -131,13 +184,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2595FE0DAEC0A4CE464B7768 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DTT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		363287DFDABF4E1072E2CD4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DTT/Pods-DTT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DTT/Pods-DTT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D49238F2F01A4D94FDC11664 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DTT/Pods-DTT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5B322FBD20596ECA00292D8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B322FC720596ECB00292D8D /* ViewController.swift in Sources */,
+				5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */,
 				5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */,
+				5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */,
+				5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -272,12 +395,13 @@
 		};
 		5B322FD420596ECB00292D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C752044EA211C7A6ECABD082 /* Pods-DTT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.momondo.travelalert.DTT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momondo.travelalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -286,12 +410,13 @@
 		};
 		5B322FD520596ECB00292D8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8854894644AE5DB1D45C0B5 /* Pods-DTT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.momondo.travelalert.DTT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momondo.travelalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
