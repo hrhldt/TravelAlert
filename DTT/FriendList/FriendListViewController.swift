@@ -23,7 +23,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func loadFriends() {
-//        \(FBSDKAccessToken.current().userID!)/invitable_friends
         let request = FBSDKGraphRequest(graphPath: "me/taggable_friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
         request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
@@ -51,6 +50,10 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

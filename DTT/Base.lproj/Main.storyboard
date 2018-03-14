@@ -31,7 +31,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QHx-ee-huq"/>
+                    <navigationItem key="navigationItem" id="QHx-ee-huq">
+                        <barButtonItem key="rightBarButtonItem" image="AccountIcon" id="Wfg-lL-gpT">
+                            <connections>
+                                <action selector="showFriendList" destination="BYZ-38-t0r" id="AF1-qA-YJa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="loginButton" destination="6Eu-J7-Uxx" id="zw3-kd-PPD"/>
                         <segue destination="PAt-s3-Ksd" kind="show" identifier="ShowFriendList" id="2aU-Vi-neR"/>

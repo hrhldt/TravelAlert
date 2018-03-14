@@ -18,6 +18,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
         loginButton.readPermissions =  ["user_friends"]
+
+        if let accessToken = FBSDKAccessToken.current(), let token = accessToken.tokenString {
+            loginFirebase(token: token)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +35,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             return
         }
         
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        loginFirebase(token: FBSDKAccessToken.current().tokenString)
+    }
+
+    @IBAction func showFriendList() {
+        guard let _ = FBSDKAccessToken.current() else {
+            UIAlertView(title: "Error", message: "You're not logged in. You have to log in with Facebook before you can continue", delegate: nil, cancelButtonTitle: "Alright").show()
+            return
+        }
+        self.performSegue(withIdentifier: "ShowFriendList", sender: nil)
+    }
+    
+    func loginFirebase(token: String) {
+        let credential = FacebookAuthProvider.credential(withAccessToken: token)
         
         Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
@@ -39,10 +55,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             }
             UIAlertView(title: "Success", message: "You've succesfully logged in", delegate: nil, cancelButtonTitle: "Alright").show()
-            self.performSegue(withIdentifier: "ShowFriendList", sender: nil)
+            self.showFriendList()
         }
     }
-
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         let firebaseAuth =
