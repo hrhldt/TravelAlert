@@ -32,6 +32,21 @@ struct Database {
         })
         return ref
     }
+    
+    static func getMe(facebookID: String, completion: @escaping (User) -> Void) {
+        let ref = db.collection(Collections.users).document(facebookID)
+        ref.addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error fetching snapshot results: \(error!)")
+                return
+            }
+            if let data = snapshot.data(), let user = User(dictionary: data) {
+                completion(user)
+                return
+            }
+            fatalError("Unable to get user.")
+        }
+    }
 
     static func countryList(completion: @escaping ([Country]) -> Void) {
         let collectionRef = db.collection(Collections.countries)
