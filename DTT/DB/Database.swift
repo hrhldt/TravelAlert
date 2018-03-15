@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 
 struct Database {
     
-    private var db: Firestore {
+    private static var db: Firestore {
         return Firestore.firestore()
     }
     
@@ -24,10 +24,11 @@ struct Database {
             static let name = "name"
             static let facebookID = "facebookID"
             static let firebaseID = "firebaseID"
+            static let code = "code"
         }
     }
 
-    func createUser(name: String, facebookID: String, firebaseID: String) -> DocumentReference? {
+    static func createUser(name: String, facebookID: String, firebaseID: String) -> DocumentReference? {
         let documentData = [Key.Field.name: name,
                             Key.Field.facebookID: facebookID,
                             Key.Field.firebaseID: firebaseID]
@@ -43,4 +44,10 @@ struct Database {
         return ref
     }
 
+    static func countryList(snapshotBlock: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration {
+        let query = db.collection(Key.Collection.countries)
+        let listener = query.addSnapshotListener(snapshotBlock)
+        return listener
+    }
+    
 }

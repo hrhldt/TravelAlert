@@ -16,9 +16,12 @@ class CountryTableViewCell: UITableViewCell {
     
     static var cellIdentifier = "CountryTableViewCell"
     
-    func setData(name: String, code: String) {
-        countryEmojiLabel.text = countryEmoji(fromCode: code)
-        countryNameLabel.text = name
+    var country: Country? {
+        didSet {
+            guard let country = country else { return }
+            countryEmojiLabel.text = countryEmoji(fromCode: country.code)
+            countryNameLabel.text = country.name
+        }
     }
  
     func countryEmoji(fromCode code: String) -> String {
