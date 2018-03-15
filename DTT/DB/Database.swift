@@ -28,19 +28,16 @@ struct Database {
         }
     }
 
-    static func createUser(name: String, facebookID: String, firebaseID: String) -> DocumentReference? {
+    static func createUser(name: String, facebookID: String, firebaseID: String) -> DocumentReference {
         let documentData = [Key.Field.name: name,
                             Key.Field.facebookID: facebookID,
                             Key.Field.firebaseID: firebaseID]
-        
-        var ref: DocumentReference? = nil
-        ref = db.collection(Key.Collection.users).addDocument(data: documentData) { error in
+        let ref = db.collection(Key.Collection.users).document(facebookID)
+        ref.setData(documentData, completion: { error in
             if let error = error {
-                print("Error adding user: \(error)")
-            } else {
-                print("Added user with ID: \(ref!.documentID)")
+                print("Error setting user data: \(error)")
             }
-        }
+        })
         return ref
     }
 
@@ -64,4 +61,8 @@ struct Database {
         }
     }
     
+    func getUser(withFacebookID facebookID: String) -> DocumentReference {
+        return db.collection(Key.Collection.users).document(facebookID)
+    }
 }
+
