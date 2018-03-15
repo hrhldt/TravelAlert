@@ -33,7 +33,7 @@ struct Database {
         return ref
     }
 
-    static func countryList(completion: (([Country])->(Void))?) {
+    static func countryList(completion: @escaping ([Country]) -> Void) {
         let collectionRef = db.collection(Collections.countries)
         collectionRef.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {
@@ -49,7 +49,7 @@ struct Database {
                 }
             }
             
-            completion?(models)
+            completion(models)
         }
     }
     
