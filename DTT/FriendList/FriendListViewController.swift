@@ -16,6 +16,7 @@ class FriendListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var friends = [FBUser]()
     private var likes: [(String, Like.Status)] = []
+    private var chosenFriend: FBUser?
     private var listenerRegistrations: [ListenerRegistration]? {
         willSet {
             listenerRegistrations?.forEach({ (listenerRegistration) in
@@ -55,6 +56,12 @@ class FriendListViewController: UIViewController {
     deinit {
         self.listenerRegistrations = nil
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? FriendCountryMatchListViewController {
+            destination.friend = chosenFriend
+        }
+    }
 }
 
 extension FriendListViewController: UITableViewDataSource {
@@ -86,9 +93,7 @@ extension FriendListViewController: UITableViewDataSource {
 
 extension FriendListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let friend = friends[indexPath.row]
-//        Database.toggleLike(liker: myID, likee: friend.id)
+        chosenFriend = friends[indexPath.row]
+        performSegue(withIdentifier: "ShowFriendCountryMatchList", sender: self)
     }
-    
 }

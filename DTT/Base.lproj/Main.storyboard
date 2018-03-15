@@ -227,6 +227,7 @@
                     <navigationItem key="navigationItem" title="Choose friends" id="iZX-Ef-iob"/>
                     <connections>
                         <outlet property="tableView" destination="oau-Dj-KIO" id="kng-tJ-tJ7"/>
+                        <segue destination="DgJ-4L-zNd" kind="show" identifier="ShowFriendCountryMatchList" id="Jxo-k8-nmD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNV-Yp-Njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,6 +251,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocj-d4-zkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.59999999999999" y="492.95352323838085"/>
+        </scene>
+        <!--Destination matches-->
+        <scene sceneID="vkm-Qt-OAu">
+            <objects>
+                <viewController id="DgJ-4L-zNd" customClass="FriendCountryMatchListViewController" customModule="DTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ll0-Qh-G6x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FYJ-CK-N4G">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryTableViewCell" rowHeight="68" id="pJV-22-VjZ" userLabel="CountryTableViewCell" customClass="CountryTableViewCell" customModule="DTT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pJV-22-VjZ" id="NLg-xc-emN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="🇩🇰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8j-fT-VHw" userLabel="Country Emoji Label">
+                                                    <rect key="frame" x="12" y="12" width="26" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Denmark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUN-1G-pAS" userLabel="Country Name Label">
+                                                    <rect key="frame" x="50" y="24" width="313" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VND-yv-sSd" userLabel="sepLine">
+                                                    <rect key="frame" x="12" y="67" width="363" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="JwA-dz-yZn"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VND-yv-sSd" firstAttribute="leading" secondItem="NLg-xc-emN" secondAttribute="leading" constant="12" id="2oj-Ic-UIw"/>
+                                                <constraint firstAttribute="bottom" secondItem="W8j-fT-VHw" secondAttribute="bottom" constant="12" id="Aul-FP-qSq"/>
+                                                <constraint firstItem="W8j-fT-VHw" firstAttribute="top" secondItem="NLg-xc-emN" secondAttribute="top" constant="12" id="GEs-VR-Lxf"/>
+                                                <constraint firstItem="W8j-fT-VHw" firstAttribute="leading" secondItem="NLg-xc-emN" secondAttribute="leading" constant="12" id="GjD-Ln-zG6"/>
+                                                <constraint firstAttribute="bottom" secondItem="VND-yv-sSd" secondAttribute="bottom" id="aSJ-qw-Qok"/>
+                                                <constraint firstAttribute="trailing" secondItem="VND-yv-sSd" secondAttribute="trailing" id="dDG-mo-QbK"/>
+                                                <constraint firstItem="kUN-1G-pAS" firstAttribute="centerY" secondItem="NLg-xc-emN" secondAttribute="centerY" id="hUA-i1-YOH"/>
+                                                <constraint firstAttribute="trailing" secondItem="kUN-1G-pAS" secondAttribute="trailing" constant="12" id="qkP-BQ-Les"/>
+                                                <constraint firstItem="kUN-1G-pAS" firstAttribute="leading" secondItem="W8j-fT-VHw" secondAttribute="trailing" constant="12" id="qwi-A7-h2f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="countryEmojiLabel" destination="W8j-fT-VHw" id="410-o7-oNd"/>
+                                            <outlet property="countryNameLabel" destination="kUN-1G-pAS" id="gDD-wC-UaE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DgJ-4L-zNd" id="EqX-MP-4NL"/>
+                                    <outlet property="delegate" destination="DgJ-4L-zNd" id="ffc-R2-aax"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VO5-Xh-l9G" firstAttribute="trailing" secondItem="FYJ-CK-N4G" secondAttribute="trailing" id="7zk-G5-OZB"/>
+                            <constraint firstItem="FYJ-CK-N4G" firstAttribute="top" secondItem="VO5-Xh-l9G" secondAttribute="top" id="GPm-ch-laM"/>
+                            <constraint firstItem="FYJ-CK-N4G" firstAttribute="leading" secondItem="VO5-Xh-l9G" secondAttribute="leading" id="qJ7-np-Wab"/>
+                            <constraint firstItem="VO5-Xh-l9G" firstAttribute="bottom" secondItem="FYJ-CK-N4G" secondAttribute="bottom" id="uQV-jf-jFo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VO5-Xh-l9G"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Destination matches" id="8o0-2c-oy4"/>
+                    <connections>
+                        <outlet property="tableView" destination="FYJ-CK-N4G" id="awW-vu-Y27"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ET3-vI-dOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2820" y="493"/>
         </scene>
     </scenes>
     <resources>
