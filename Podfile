@@ -7,6 +7,7 @@ use_frameworks!
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
+pod 'Firebase/Firestore'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
