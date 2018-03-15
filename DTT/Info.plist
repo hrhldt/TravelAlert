@@ -55,6 +55,19 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OpenSans-Bold</string>
+        <string>OpenSans-BoldItalic</string>
+        <string>OpenSans-ExtraBold</string>
+        <string>OpenSans-ExtraBoldItalic</string>
+        <string>OpenSans-Italic</string>
+        <string>OpenSans-Light</string>
+        <string>OpenSans-LightItalic</string>
+        <string>OpenSans-Regular</string>
+        <string>OpenSans-SemiBold</string>
+        <string>OpenSans-SemiBoldItalic</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

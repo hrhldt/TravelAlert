@@ -23,11 +23,14 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func loadFriends() {
-        let request = FBSDKGraphRequest(graphPath: "me/taggable_friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
+        print(FBSDKAccessToken.current().userID)
+        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID)/friends", parameters: ["fields": "uid"], httpMethod: "GET")
         request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
             }
+            
+            print(result)
             
             if let resultDict = result as? NSDictionary {
                 self.data = resultDict["data"] as! NSArray
