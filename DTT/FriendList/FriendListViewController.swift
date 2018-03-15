@@ -73,7 +73,6 @@ extension FriendListViewController: UITableViewDataSource {
                 likeStatus = status
             }
         }
-//        cell.contentView.backgroundColor = mutualLike ? UIColor.red : UIColor.white
         cell.likeStatus = likeStatus
         cell.pictureURL = friend.pictureURL
         return cell

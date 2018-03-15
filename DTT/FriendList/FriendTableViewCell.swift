@@ -27,6 +27,14 @@ class FriendTableViewCell: UITableViewCell {
     var likeStatus: Like.Status = .dislike {
         didSet {
             likeButton.setTitle(likeStatus.rawValue, for: .normal)
+            switch likeStatus {
+            case .dislike:
+                self.contentView.backgroundColor = UIColor.red.withAlphaComponent(0.2)
+            case .unrequitedLike:
+                self.contentView.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
+            case .mutualLike:
+                self.contentView.backgroundColor = UIColor.green.withAlphaComponent(0.2)
+            }
         }
     }
     
@@ -35,6 +43,11 @@ class FriendTableViewCell: UITableViewCell {
             let url = URL(string: pictureURL)
             profilePictureImageView.kf.setImage(with: url)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.selectionStyle = .none
     }
     
 }
