@@ -13,6 +13,8 @@
 		5B322FCC20596ECB00292D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FCB20596ECB00292D8D /* Assets.xcassets */; };
 		5B322FCF20596ECB00292D8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FCD20596ECB00292D8D /* LaunchScreen.storyboard */; };
 		5B322FD720596F4300292D8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FD620596F4300292D8D /* GoogleService-Info.plist */; };
+		5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD18559205A96560035437B /* CountriesListViewController.swift */; };
+		5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */; };
 		5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */; };
 		5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */; };
 		5BD76DA4205A6F5200AEE740 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76D9A205A6F5100AEE740 /* OpenSans-SemiBoldItalic.ttf */; };
@@ -37,6 +39,8 @@
 		5B322FCE20596ECB00292D8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B322FD020596ECB00292D8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B322FD620596F4300292D8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BD18559205A96560035437B /* CountriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewController.swift; sourceTree = "<group>"; };
+		5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		5BD76D972059D35700AEE740 /* DTT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DTT.entitlements; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		5B322FC320596ECA00292D8D /* DTT */ = {
 			isa = PBXGroup;
 			children = (
+				5BD18558205A96440035437B /* CountriesList */,
 				5BD76D972059D35700AEE740 /* DTT.entitlements */,
 				5BD76D962059B1A600AEE740 /* Login */,
 				5BD76D952059B19B00AEE740 /* FriendList */,
@@ -100,6 +105,15 @@
 				5BD76D98205A6F3B00AEE740 /* Resources */,
 			);
 			path = DTT;
+			sourceTree = "<group>";
+		};
+		5BD18558205A96440035437B /* CountriesList */ = {
+			isa = PBXGroup;
+			children = (
+				5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */,
+				5BD18559205A96560035437B /* CountriesListViewController.swift */,
+			);
+			path = CountriesList;
 			sourceTree = "<group>";
 		};
 		5BD76D952059B19B00AEE740 /* FriendList */ = {
@@ -339,8 +353,10 @@
 			files = (
 				5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */,
 				5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */,
+				5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */,
 				5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */,
 				5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */,
+				5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

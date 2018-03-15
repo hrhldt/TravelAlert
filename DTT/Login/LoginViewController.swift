@@ -70,5 +70,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         UIAlertView(title: "Success", message: "You've succesfully logged out", delegate: nil, cancelButtonTitle: "Alright").show()
     }
+    
+    @IBAction func showCountriesList(_ sender: Any) {
+        performSegue(withIdentifier: "ShowCountryList", sender: nil)
+    }
+    
 }
 
