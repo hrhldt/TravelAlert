@@ -15,24 +15,16 @@ struct Database {
         return Firestore.firestore()
     }
     
-    private enum Key {
-        enum Collection {
-            static let countries = "Countries"
-            static let users = "Users"
-        }
-        enum Field {
-            static let name = "name"
-            static let facebookID = "facebookID"
-            static let firebaseID = "firebaseID"
-            static let code = "code"
-        }
+    private enum Collections {
+        static let countries = "Countries"
+        static let users = "Users"
     }
 
     static func createUser(name: String, facebookID: String, firebaseID: String) -> DocumentReference {
-        let documentData = [Key.Field.name: name,
-                            Key.Field.facebookID: facebookID,
-                            Key.Field.firebaseID: firebaseID]
-        let ref = db.collection(Key.Collection.users).document(facebookID)
+        let documentData = [User.Fields.name: name,
+                            User.Fields.facebookID: facebookID,
+                            User.Fields.firebaseID: firebaseID]
+        let ref = db.collection(Collections.users).document(facebookID)
         ref.setData(documentData, completion: { error in
             if let error = error {
                 print("Error setting user data: \(error)")
@@ -42,7 +34,7 @@ struct Database {
     }
 
     static func countryList(completion: (([Country])->(Void))?) {
-        let collectionRef = db.collection(Key.Collection.countries)
+        let collectionRef = db.collection(Collections.countries)
         collectionRef.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {
                 print("Error fetching snapshot results: \(error!)")
@@ -61,8 +53,8 @@ struct Database {
         }
     }
     
-    func getUser(withFacebookID facebookID: String) -> DocumentReference {
-        return db.collection(Key.Collection.users).document(facebookID)
+    static func getUser(withFacebookID facebookID: String) -> DocumentReference {
+        return db.collection(Collections.users).document(facebookID)
     }
 }
 

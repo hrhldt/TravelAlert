@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A97914A205A96E300C6AB3F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A979149205A96E300C6AB3F /* Database.swift */; };
+		0A97914C205AAE8000C6AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97914B205AAE8000C6AB3F /* User.swift */; };
 		5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC420596ECA00292D8D /* AppDelegate.swift */; };
 		5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC620596ECB00292D8D /* LoginViewController.swift */; };
 		5B322FCA20596ECB00292D8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FC820596ECB00292D8D /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		0A979149205A96E300C6AB3F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		0A97914B205AAE8000C6AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5B322FC120596ECA00292D8D /* DTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B322FC420596ECA00292D8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B322FC620596ECB00292D8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3C262D205AA3D2007262DF /* Country.swift */,
+				0A97914B205AAE8000C6AB3F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */,
 				5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */,
 				5B3C262E205AA3D2007262DF /* Country.swift in Sources */,
+				0A97914C205AAE8000C6AB3F /* User.swift in Sources */,
 				0A97914A205A96E300C6AB3F /* Database.swift in Sources */,
 				5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */,
 				5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */,
