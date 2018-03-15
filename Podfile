@@ -12,5 +12,6 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'Kingfisher', '~> 4.0'
+pod 'TisprCardStack'
 
 end

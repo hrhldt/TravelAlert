@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A97914A205A96E300C6AB3F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A979149205A96E300C6AB3F /* Database.swift */; };
+		24378FEB205AA33B001D81BC /* SwipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24378FEA205AA33B001D81BC /* SwipeCard.swift */; };
 		5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC420596ECA00292D8D /* AppDelegate.swift */; };
 		5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC620596ECB00292D8D /* LoginViewController.swift */; };
 		5B322FCA20596ECB00292D8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FC820596ECB00292D8D /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD18559205A96560035437B /* CountriesListViewController.swift */; };
 		5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */; };
 		5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */; };
-		5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */; };
 		5BD76DA4205A6F5200AEE740 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76D9A205A6F5100AEE740 /* OpenSans-SemiBoldItalic.ttf */; };
 		5BD76DA5205A6F5200AEE740 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76D9B205A6F5100AEE740 /* OpenSans-Regular.ttf */; };
 		5BD76DA6205A6F5200AEE740 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76D9C205A6F5100AEE740 /* OpenSans-Bold.ttf */; };
@@ -33,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		0A979149205A96E300C6AB3F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		24378FEA205AA33B001D81BC /* SwipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCard.swift; sourceTree = "<group>"; };
 		5B322FC120596ECA00292D8D /* DTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B322FC420596ECA00292D8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B322FC620596ECB00292D8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		5BD18559205A96560035437B /* CountriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewController.swift; sourceTree = "<group>"; };
 		5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		5BD76D972059D35700AEE740 /* DTT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DTT.entitlements; sourceTree = "<group>"; };
 		5BD76D9A205A6F5100AEE740 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		5BD76D9B205A6F5100AEE740 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD76D912059AEAE00AEE740 /* FriendListViewController.swift */,
-				5BD76D932059B19500AEE740 /* FriendTableViewCell.swift */,
+				24378FEA205AA33B001D81BC /* SwipeCard.swift */,
 			);
 			path = FriendList;
 			sourceTree = "<group>";
@@ -310,6 +310,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/TisprCardStack/TisprCardStack.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -328,6 +329,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TisprCardStack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -366,8 +368,8 @@
 				5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */,
 				5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */,
 				5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */,
+				24378FEB205AA33B001D81BC /* SwipeCard.swift in Sources */,
 				0A97914A205A96E300C6AB3F /* Database.swift in Sources */,
-				5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */,
 				5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

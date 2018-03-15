@@ -9,56 +9,80 @@
 import UIKit
 import Foundation
 import FBSDKCoreKit
+import TisprCardStack
 
-class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
-    @IBOutlet weak var tableView: UITableView!
-    var data: NSArray = NSArray()
+
+class FriendListViewController: CardStackViewController, CardStackDelegate, CardStackDatasource {
+
+    @IBOutlet var cardStackView: CardStackView!
+    
+    private var data: NSArray = NSArray()
+    
+    private struct Constants {
+        static let cellIndentifier = "TisprCardStackDemoViewCellIdentifier"
+        static let padding: CGFloat = 20.0
+        static let kHeight: CGFloat = 0.67
+        static let topStackVisibleCardCount = 1
+        static let bottomStackVisibleCardCount = 0
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Finder"
+        let size = CGSize(width: view.bounds.width - 2 * Constants.padding, height: Constants.kHeight * view.bounds.height)
+        setCardSize(size)
+        
+        delegate = self
+        datasource = self
+        
+        //configuration of stacks
+        layout.topStackMaximumSize = Constants.topStackVisibleCardCount
+        layout.bottomStackMaximumSize = Constants.bottomStackVisibleCardCount
+        
         loadFriends()
     }
     
     func loadFriends() {
-        print(FBSDKAccessToken.current().userID)
+
         let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID!)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
         request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
             }
             
-            print(result)
             
             if let resultDict = result as? NSDictionary {
                 self.data = resultDict["data"] as! NSArray
             }
             
-            self.tableView.reloadData()
+            self.cardStackView.reloadData()
+            
         })
-    
+        
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.cellIdentifier) as! FriendTableViewCell
-        let dictionary = data.object(at: indexPath.row) as! NSDictionary
-        cell.name = dictionary["name"] as? String ?? ""
-        if let pictureDict = dictionary["picture"] as? NSDictionary,
-            let pictureData = pictureDict["data"] as? NSDictionary,
-            let url = pictureData["url"] as? String {
-            cell.pictureURL = url
-        }
-        return cell
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfCards(in cardStack: CardStackView) -> Int {
         return data.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func card(_ cardStack: CardStackView, cardForItemAtIndex index: IndexPath) -> CardStackViewCell {
+        let cell = cardStack.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: index) as! SwipeCard
+        
+        let dictionary = data.object(at: index.row) as! NSDictionary
+        
+        cell.name = dictionary["name"] as? String ?? ""
+        cell.facebookID = dictionary["id"] as? String ?? ""
+        
+        cell.backgroundColor = UIColor.gray
+    
+        return cell
+        
+    }
+    
+    func cardDidChangeState(_ cardIndex: Int) {
+        // Method to observe card postion changes
     }
     
 }

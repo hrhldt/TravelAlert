@@ -94,6 +94,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.5.0)
+  - TisprCardStack (3.0.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - Kingfisher (~> 4.0)
+  - TisprCardStack
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -128,7 +130,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
+  TisprCardStack: 49c1b04e124105d7f0bcec3e0a6aac703229e143
 
-PODFILE CHECKSUM: 3c418bf26240566c0d6175f96f5aef3913b4bfa3
+PODFILE CHECKSUM: 7061fcdcad2e126fd7ec4269fa1ca4f844b431eb
 
 COCOAPODS: 1.4.0
