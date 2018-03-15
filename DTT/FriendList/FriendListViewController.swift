@@ -45,7 +45,9 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.cellIdentifier) as! FriendTableViewCell
         let dictionary = data.object(at: indexPath.row) as! NSDictionary
         cell.name = dictionary["name"] as? String ?? ""
-        if let pictureDict = dictionary["picture"] as? NSDictionary, let pictureData = pictureDict["data"] as? NSDictionary, let url = pictureData["url"] as? String {
+        if let pictureDict = dictionary["picture"] as? NSDictionary,
+            let pictureData = pictureDict["data"] as? NSDictionary,
+            let url = pictureData["url"] as? String {
             cell.pictureURL = url
         }
         return cell
