@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A97914A205A96E300C6AB3F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A979149205A96E300C6AB3F /* Database.swift */; };
 		5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC420596ECA00292D8D /* AppDelegate.swift */; };
 		5B322FC720596ECB00292D8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B322FC620596ECB00292D8D /* LoginViewController.swift */; };
 		5B322FCA20596ECB00292D8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B322FC820596ECB00292D8D /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A979149205A96E300C6AB3F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		5B322FC120596ECA00292D8D /* DTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B322FC420596ECA00292D8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B322FC620596ECB00292D8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A979148205A966900C6AB3F /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				0A979149205A96E300C6AB3F /* Database.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		5B322FB820596ECA00292D8D = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +106,7 @@
 				5BD76D972059D35700AEE740 /* DTT.entitlements */,
 				5BD76D962059B1A600AEE740 /* Login */,
 				5BD76D952059B19B00AEE740 /* FriendList */,
+				0A979148205A966900C6AB3F /* DB */,
 				5B322FD620596F4300292D8D /* GoogleService-Info.plist */,
 				5B322FC420596ECA00292D8D /* AppDelegate.swift */,
 				5B322FC820596ECB00292D8D /* Main.storyboard */,
@@ -355,6 +366,7 @@
 				5B322FC520596ECB00292D8D /* AppDelegate.swift in Sources */,
 				5BD1855D205A96EC0035437B /* CountryTableViewCell.swift in Sources */,
 				5BD76D922059AEAE00AEE740 /* FriendListViewController.swift in Sources */,
+				0A97914A205A96E300C6AB3F /* Database.swift in Sources */,
 				5BD76D942059B19500AEE740 /* FriendTableViewCell.swift in Sources */,
 				5BD1855A205A96560035437B /* CountriesListViewController.swift in Sources */,
 			);
