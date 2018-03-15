@@ -24,7 +24,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func loadFriends() {
         print(FBSDKAccessToken.current().userID)
-        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID)/friends", parameters: ["fields": "uid"], httpMethod: "GET")
+        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID!)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
         request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
@@ -45,7 +45,9 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.cellIdentifier) as! FriendTableViewCell
         let dictionary = data.object(at: indexPath.row) as! NSDictionary
         cell.name = dictionary["name"] as? String ?? ""
-        if let pictureDict = dictionary["picture"] as? NSDictionary, let pictureData = pictureDict["data"] as? NSDictionary, let url = pictureData["url"] as? String {
+        if let pictureDict = dictionary["picture"] as? NSDictionary,
+            let pictureData = pictureDict["data"] as? NSDictionary,
+            let url = pictureData["url"] as? String {
             cell.pictureURL = url
         }
         return cell

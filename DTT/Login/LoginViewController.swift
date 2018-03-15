@@ -89,5 +89,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITabBarC
         
         isLoggedIn = false
     }
+    
+    @IBAction func showCountriesList(_ sender: Any) {
+        performSegue(withIdentifier: "ShowCountryList", sender: nil)
+    }
+    
 }
 
