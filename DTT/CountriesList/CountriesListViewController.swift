@@ -20,7 +20,7 @@ class CountriesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func loadData() {
-        let _ = Database.countryList { (snapshot, error) in
+        Database.countryList { (snapshot, error) in
             guard let snapshot = snapshot else {
                 print("Error fetching snapshot results: \(error!)")
                 return

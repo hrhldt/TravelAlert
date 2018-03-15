@@ -44,10 +44,9 @@ struct Database {
         return ref
     }
 
-    static func countryList(snapshotBlock: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration {
-        let query = db.collection(Key.Collection.countries)
-        let listener = query.addSnapshotListener(snapshotBlock)
-        return listener
+    static func countryList(snapshotBlock: @escaping FIRQuerySnapshotBlock) {
+        let collectionRef = db.collection(Key.Collection.countries)
+        collectionRef.getDocuments(completion: snapshotBlock)
     }
     
 }
