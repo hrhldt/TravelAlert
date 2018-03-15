@@ -11,8 +11,8 @@ import UIKit
 
 class CountriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
-    @IBOutlet weak var tableView: UITableView!
-    var models = [Country]()
+    @IBOutlet private weak var tableView: UITableView!
+    private var countries = [Country]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +20,20 @@ class CountriesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func loadData() {
-        Database.countryList { (countries) -> (Void) in
-            self.models = countries
+        Database.getCountryList { (countries) -> (Void) in
+            self.countries = countries
             self.tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.cellIdentifier) as! CountryTableViewCell
-        
-        let country = models[indexPath.row]
-        cell.country = country
+        cell.country = countries[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return countries.count
     }
     
 }

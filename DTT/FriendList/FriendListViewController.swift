@@ -9,31 +9,46 @@
 import UIKit
 import Foundation
 import FBSDKCoreKit
+import FirebaseFirestore
 
-class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendListViewController: UIViewController {
  
-    @IBOutlet weak var tableView: UITableView!
-    var data: NSArray = NSArray()
+    @IBOutlet private weak var tableView: UITableView!
+    private var friends = [FBUser]()
+    private var matches: [String] = []
+    private var myID: String {
+        return FBSDKAccessToken.current().userID
+    }
+    private var listeners: [ListenerRegistration]? {
+        willSet {
+            listeners?.forEach({ (listenerRegistration) in
+                listenerRegistration.remove()
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Choose friends"
         loadFriends()
+        listeners = Database.getMatches(facebookID: myID) { [weak self] (ids) in
+            print("IDs received: \(ids)")
+            self?.matches = ids
+            self?.tableView.reloadData()
+        }
     }
     
-    func loadFriends() {
+    private func loadFriends() {
         print(FBSDKAccessToken.current().userID)
-        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID!)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
-        request?.start(completionHandler: { (connection, result, error) in
+        let request = FBSDKGraphRequest(graphPath: "/\(myID)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
+        let _ = request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
             }
-            
-            print(result)
-            
-            if let resultDict = result as? NSDictionary {
-                self.data = resultDict["data"] as! NSArray
+
+            if let resultDict = result as? [String: Any], let data = resultDict["data"] as? [[String: Any]] {
+                self.friends = data.map({ FBUser(dictionary: $0) }).flatMap({ $0 })
             }
             
             self.tableView.reloadData()
@@ -41,24 +56,32 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     }
     
+    deinit {
+        self.listeners = nil
+    }
+}
+
+extension FriendListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.cellIdentifier) as! FriendTableViewCell
-        let dictionary = data.object(at: indexPath.row) as! NSDictionary
-        cell.name = dictionary["name"] as? String ?? ""
-        if let pictureDict = dictionary["picture"] as? NSDictionary,
-            let pictureData = pictureDict["data"] as? NSDictionary,
-            let url = pictureData["url"] as? String {
-            cell.pictureURL = url
-        }
+        let friend = friends[indexPath.row]
+        cell.name = friend.name
+        cell.contentView.backgroundColor = matches.contains(friend.id) ? UIColor.red : UIColor.white
+        cell.pictureURL = friend.pictureURL
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return friends.count
     }
-    
+}
+
+extension FriendListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let friend = friends[indexPath.row]
+        Database.toggleLike(liker: myID, likee: friend.id)
     }
     
 }

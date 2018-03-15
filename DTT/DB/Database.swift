@@ -21,7 +21,7 @@ struct Database {
         static let likes = "Likes"
     }
 
-    // MARK: - Creation
+    // MARK: - CRUD
     static func createUser(name: String, facebookID: String, firebaseID: String) {
         let documentData = [User.Fields.name: name,
                             User.Fields.facebookID: facebookID,
@@ -34,7 +34,7 @@ struct Database {
         })
     }
     
-    static func createLike(liker: String, likee: String) {
+    private static func createLike(liker: String, likee: String) {
         let documentData = [Like.Fields.liker: liker,
                             Like.Fields.likee: likee]
         let documentID = "\(liker),\(likee)"
@@ -45,13 +45,55 @@ struct Database {
             }
         })
     }
-   
+    
+    private static func deleteLike(liker: String, likee: String) {
+        let documentID = "\(liker),\(likee)"
+        let ref = db.collection(Collections.likes).document(documentID)
+        ref.delete { (error) in
+            if let error = error {
+                print("Error deleting like: \(error)")
+            }
+        }
+    }
+    
+    
+    static func toggleLike(liker: String, likee: String) {
+        let documentID = "\(liker),\(likee)"
+        let ref = db.collection(Collections.likes).document(documentID)
+        ref.getDocument { (snapshot, error) in
+            guard error == nil else { return }
+            if snapshot?.data() == nil {
+                createLike(liker: liker, likee: likee)
+            } else {
+                deleteLike(liker: liker, likee: likee)
+            }
+        }
+    }
+    
+    static func getCountryList(completion: @escaping ([Country]) -> Void) {
+        let ref = db.collection(Collections.countries)
+        ref.getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error fetching snapshot results: \(error!)")
+                return
+            }
+            let models = snapshot.documents.map { (document) -> Country in
+                if let model = Country(dictionary: document.data()) {
+                    return model
+                } else {
+                    fatalError("Unable to initialize type \(Country.self) with dictionary \(document.data())")
+                }
+            }
+            completion(models)
+        }
+    }
+    
     // MARK: - Listeners
-    static func getMatches(facebookID: String, completion: @escaping ([String]) -> Void) {
+    static func getMatches(facebookID: String, completion: @escaping ([String]) -> Void) -> [ListenerRegistration] {
         let likerQuery = db.collection(Collections.likes).whereField(Like.Fields.liker, isEqualTo: facebookID)
         let likeeQuery = db.collection(Collections.likes).whereField(Like.Fields.likee, isEqualTo: facebookID)
-        
-        likerQuery.addSnapshotListener { (snapshot, error) in
+       
+        let reg1 = likerQuery.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {
                 print("Error fetching liker snapshot results: \(error!)")
                 completion([])
@@ -81,7 +123,7 @@ struct Database {
             })
         }
         
-        likeeQuery.addSnapshotListener { (snapshot, error) in
+        let reg2 = likeeQuery.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {
                 print("Error fetching liker snapshot results: \(error!)")
                 completion([])
@@ -110,11 +152,12 @@ struct Database {
                 completion(likers.filter({ likees.contains($0) }))
             })
         }
+        return [reg1, reg2]
     }
     
-    static func getMe(facebookID: String, completion: @escaping (User) -> Void) {
+    static func getMe(facebookID: String, completion: @escaping (User) -> Void) -> ListenerRegistration {
         let ref = db.collection(Collections.users).document(facebookID)
-        ref.addSnapshotListener { (snapshot, error) in
+        return ref.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {
                 print("Error fetching snapshot results: \(error!)")
                 return
@@ -124,25 +167,6 @@ struct Database {
                 return
             }
             fatalError("Unable to get user.")
-        }
-    }
-
-    static func countryList(completion: @escaping ([Country]) -> Void) {
-        let collectionRef = db.collection(Collections.countries)
-        collectionRef.addSnapshotListener { (snapshot, error) in
-            guard let snapshot = snapshot else {
-                print("Error fetching snapshot results: \(error!)")
-                return
-            }
-            let models = snapshot.documents.map { (document) -> Country in
-                if let model = Country(dictionary: document.data()) {
-                    return model
-                } else {
-                    fatalError("Unable to initialize type \(Country.self) with dictionary \(document.data())")
-                }
-            }
-            
-            completion(models)
         }
     }
 }

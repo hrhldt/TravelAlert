@@ -10,20 +10,23 @@ import Foundation
 
 class Country {
     
-    enum SerializedKey: String {
-        case name = "name"
-        case code = "code"
+    enum Fields {
+        static let code = "code"
+        static let name = "name"
     }
     
     let name: String
     let code: String
     
     init?(dictionary: [String: Any]) {
-        guard let name = dictionary[SerializedKey.name.rawValue] as? String, let code = dictionary[SerializedKey.code.rawValue] as? String else {
+        guard let name = dictionary[Fields.name] as? String else {
             return nil
         }
-        
         self.name =  name
+        
+        guard let code = dictionary[Fields.code] as? String else {
+            return nil
+        }
         self.code = code
     }
     
