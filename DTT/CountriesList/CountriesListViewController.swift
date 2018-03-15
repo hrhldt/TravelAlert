@@ -20,20 +20,8 @@ class CountriesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func loadData() {
-        Database.countryList { (snapshot, error) in
-            guard let snapshot = snapshot else {
-                print("Error fetching snapshot results: \(error!)")
-                return
-            }
-            let models = snapshot.documents.map { (document) -> Country in
-                if let model = Country(dictionary: document.data()) {
-                    return model
-                } else {
-                    // Don't use fatalError here in a real app.
-                    fatalError("Unable to initialize type \(Country.self) with dictionary \(document.data())")
-                }
-            }
-            self.models = models
+        Database.countryList { (countries) -> (Void) in
+            self.models = countries
             self.tableView.reloadData()
         }
     }

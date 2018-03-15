@@ -44,9 +44,24 @@ struct Database {
         return ref
     }
 
-    static func countryList(snapshotBlock: @escaping FIRQuerySnapshotBlock) {
+    static func countryList(completion: (([Country])->(Void))?) {
         let collectionRef = db.collection(Key.Collection.countries)
-        collectionRef.getDocuments(completion: snapshotBlock)
+        collectionRef.addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error fetching snapshot results: \(error!)")
+                return
+            }
+            let models = snapshot.documents.map { (document) -> Country in
+                if let model = Country(dictionary: document.data()) {
+                    return model
+                } else {
+                    // Don't use fatalError here in a real app.
+                    fatalError("Unable to initialize type \(Country.self) with dictionary \(document.data())")
+                }
+            }
+            
+            completion?(models)
+        }
     }
     
 }
