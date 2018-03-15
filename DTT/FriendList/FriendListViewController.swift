@@ -16,12 +16,9 @@ class FriendListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var friends = [FBUser]()
     private var likes: [(String, Like.Status)] = []
-    private var myID: String {
-        return FBSDKAccessToken.current().userID
-    }
-    private var listeners: [ListenerRegistration]? {
+    private var listenerRegistrations: [ListenerRegistration]? {
         willSet {
-            listeners?.forEach({ (listenerRegistration) in
+            listenerRegistrations?.forEach({ (listenerRegistration) in
                 listenerRegistration.remove()
             })
         }
@@ -30,9 +27,8 @@ class FriendListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Choose friends"
         loadFriends()
-        listeners = Database.getMatches(facebookID: myID) { [weak self] (likes) in
+        listenerRegistrations = Database.listenToLikes(facebookID: Database.myID) { [weak self] (likes) in
             print("Likes received: \(likes)")
             self?.likes = likes
             self?.tableView.reloadData()
@@ -41,7 +37,7 @@ class FriendListViewController: UIViewController {
     
     private func loadFriends() {
         print(FBSDKAccessToken.current().userID)
-        let request = FBSDKGraphRequest(graphPath: "/\(myID)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
+        let request = FBSDKGraphRequest(graphPath: "/\(Database.myID)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
         let _ = request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
@@ -57,7 +53,7 @@ class FriendListViewController: UIViewController {
     }
     
     deinit {
-        self.listeners = nil
+        self.listenerRegistrations = nil
     }
 }
 
@@ -73,6 +69,11 @@ extension FriendListViewController: UITableViewDataSource {
                 likeStatus = status
             }
         }
+        
+        let friendID = friends[indexPath.row].id
+        cell.buttonClicked = {
+            Database.toggleLike(liker: Database.myID, likee: friendID)
+        }
         cell.likeStatus = likeStatus
         cell.pictureURL = friend.pictureURL
         return cell
@@ -85,9 +86,9 @@ extension FriendListViewController: UITableViewDataSource {
 
 extension FriendListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let friend = friends[indexPath.row]
-        Database.toggleLike(liker: myID, likee: friend.id)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let friend = friends[indexPath.row]
+//        Database.toggleLike(liker: myID, likee: friend.id)
     }
     
 }

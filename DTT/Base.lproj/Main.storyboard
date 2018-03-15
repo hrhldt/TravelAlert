@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="1054" y="493"/>
         </scene>
-        <!--Countries View Controller-->
+        <!--Countries I'd like to visit-->
         <scene sceneID="Ilr-ey-WMx">
             <objects>
                 <viewController id="rls-Ui-FKp" customClass="CountriesViewController" customModule="DTT" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,6 +126,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f5g-uR-q82"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Countries I'd like to visit" id="SIN-tp-6zi"/>
                     <connections>
                         <outlet property="tableView" destination="DbC-Z0-LdQ" id="4ZN-fc-RlC"/>
                     </connections>
@@ -134,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="1998" y="-260"/>
         </scene>
-        <!--Friend List View Controller-->
+        <!--Choose friends-->
         <scene sceneID="Azx-Wh-BEN">
             <objects>
                 <viewController id="PAt-s3-Ksd" customClass="FriendListViewController" customModule="DTT" customModuleProvider="target" sceneMemberID="viewController">
@@ -223,6 +224,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vb8-wT-IBK"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Choose friends" id="iZX-Ef-iob"/>
                     <connections>
                         <outlet property="tableView" destination="oau-Dj-KIO" id="kng-tJ-tJ7"/>
                     </connections>

@@ -12,12 +12,18 @@ import Kingfisher
 
 class FriendTableViewCell: UITableViewCell {
     
-    static var cellIdentifier = "FriendTableViewCell"
+    static let cellIdentifier = "FriendTableViewCell"
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
+    var buttonClicked: (() -> Void)? {
+        didSet {
+            likeButton.removeTarget(self, action: nil, for: .touchUpInside)
+            likeButton.addTarget(self, action: #selector(likeButtonClicked(_:)), for: .touchUpInside)
+        }
+    }
     var name: String = "" {
         didSet {
             nameLabel.text = name
@@ -48,6 +54,10 @@ class FriendTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.selectionStyle = .none
+    }
+
+    @objc private func likeButtonClicked(_ sender: Any) {
+        buttonClicked?()
     }
     
 }

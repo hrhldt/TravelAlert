@@ -54,7 +54,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Alright").show()
                 return
             }
-            UIAlertView(title: "Success", message: "You've succesfully logged in", delegate: nil, cancelButtonTitle: "Alright").show()
+//            UIAlertView(title: "Success", message: "You've succesfully logged in", delegate: nil, cancelButtonTitle: "Alright").show()
+            Database.createUser(facebookID: Database.myID)
             self.showFriendList()
         }
     }
@@ -68,7 +69,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             print ("Error signing out: %@", signOutError)
         }
         
-        UIAlertView(title: "Success", message: "You've succesfully logged out", delegate: nil, cancelButtonTitle: "Alright").show()
+//        UIAlertView(title: "Success", message: "You've succesfully logged out", delegate: nil, cancelButtonTitle: "Alright").show()
     }
     
     @IBAction func showCountriesList(_ sender: Any) {

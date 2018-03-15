@@ -8,11 +8,15 @@
 
 import Foundation
 import FirebaseFirestore
+import FBSDKCoreKit
 
 struct Database {
     
     private static var db: Firestore {
         return Firestore.firestore()
+    }
+    static var myID: String {
+        return FBSDKAccessToken.current().userID
     }
     
     private enum Collections {
@@ -22,50 +26,56 @@ struct Database {
     }
 
     // MARK: - CRUD
-    static func createUser(name: String, facebookID: String, firebaseID: String) {
-        let documentData = [User.Fields.name: name,
-                            User.Fields.facebookID: facebookID,
-                            User.Fields.firebaseID: firebaseID]
+    static func createUser(facebookID: String) {
         let ref = db.collection(Collections.users).document(facebookID)
-        ref.setData(documentData, completion: { error in
-            if let error = error {
-                print("Error creating user: \(error)")
-            }
-        })
-    }
-    
-    private static func createLike(liker: String, likee: String) {
-        let documentData = [Like.Fields.liker: liker,
-                            Like.Fields.likee: likee]
-        let documentID = "\(liker),\(likee)"
-        let ref = db.collection(Collections.likes).document(documentID)
-        ref.setData(documentData, completion: { error in
-            if let error = error {
-                print("Error creating like: \(error)")
-            }
-        })
-    }
-    
-    private static func deleteLike(liker: String, likee: String) {
-        let documentID = "\(liker),\(likee)"
-        let ref = db.collection(Collections.likes).document(documentID)
-        ref.delete { (error) in
-            if let error = error {
-                print("Error deleting like: \(error)")
+        ref.getDocument { (snapshot, error) in
+            guard error == nil else { return }
+            if snapshot?.data() == nil {
+                let documentData: [String: Any] = [User.Fields.facebookID: facebookID,
+                                                   User.Fields.countryCodes: []]
+                ref.setData(documentData, completion: { error in
+                    if let error = error {
+                        print("Error creating user: \(error)")
+                    }
+                })
             }
         }
     }
     
-    
     static func toggleLike(liker: String, likee: String) {
-        let documentID = "\(liker),\(likee)"
-        let ref = db.collection(Collections.likes).document(documentID)
+        let likeID = "\(liker),\(likee)"
+        let ref = db.collection(Collections.likes).document(likeID)
         ref.getDocument { (snapshot, error) in
             guard error == nil else { return }
             if snapshot?.data() == nil {
                 createLike(liker: liker, likee: likee)
             } else {
                 deleteLike(liker: liker, likee: likee)
+            }
+        }
+    }
+    
+    static func toggleCountryCode(facebookID: String, countryCode: String) {
+        let ref = db.collection(Collections.users).document(facebookID)
+        ref.getDocument { (snapshot, error) in
+            guard error == nil else { return }
+            if let data = snapshot?.data(), let user = User(dictionary: data) {
+                let countryCodes: [String]
+                if user.countryCodes.contains(countryCode) {
+                    countryCodes = user.countryCodes.filter({ $0 != countryCode })
+                } else {
+                    countryCodes = user.countryCodes + [countryCode]
+                }
+                updateUserCountries(facebookID: facebookID, countryCodes: countryCodes)
+            }
+        }
+    }
+    
+    static func updateUserCountries(facebookID: String, countryCodes: [String]) {
+        let ref = db.collection(Collections.users).document(facebookID)
+        ref.updateData([User.Fields.countryCodes : countryCodes]) { (error) in
+            if let error = error {
+                print("Error updating user's countries: \(error)")
             }
         }
     }
@@ -88,8 +98,30 @@ struct Database {
         }
     }
     
+    private static func createLike(liker: String, likee: String) {
+        let documentData = [Like.Fields.liker: liker,
+                            Like.Fields.likee: likee]
+        let likeID = "\(liker),\(likee)"
+        let ref = db.collection(Collections.likes).document(likeID)
+        ref.setData(documentData, completion: { error in
+            if let error = error {
+                print("Error creating like: \(error)")
+            }
+        })
+    }
+    
+    private static func deleteLike(liker: String, likee: String) {
+        let likeID = "\(liker),\(likee)"
+        let ref = db.collection(Collections.likes).document(likeID)
+        ref.delete { (error) in
+            if let error = error {
+                print("Error deleting like: \(error)")
+            }
+        }
+    }
+    
     // MARK: - Listeners
-    static func getMatches(facebookID: String, completion: @escaping ([(String, Like.Status)]) -> Void) -> [ListenerRegistration] {
+    static func listenToLikes(facebookID: String, completion: @escaping ([(String, Like.Status)]) -> Void) -> [ListenerRegistration] {
         let likerQuery = db.collection(Collections.likes).whereField(Like.Fields.liker, isEqualTo: facebookID)
         let likeeQuery = db.collection(Collections.likes).whereField(Like.Fields.likee, isEqualTo: facebookID)
        
@@ -161,7 +193,7 @@ struct Database {
         return [reg1, reg2]
     }
     
-    static func getMe(facebookID: String, completion: @escaping (User) -> Void) -> ListenerRegistration {
+    static func listenToUser(facebookID: String, completion: @escaping (User) -> Void) -> ListenerRegistration {
         let ref = db.collection(Collections.users).document(facebookID)
         return ref.addSnapshotListener { (snapshot, error) in
             guard let snapshot = snapshot else {

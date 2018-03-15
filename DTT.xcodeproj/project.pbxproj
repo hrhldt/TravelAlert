@@ -111,8 +111,8 @@
 		5B322FC320596ECA00292D8D /* DTT */ = {
 			isa = PBXGroup;
 			children = (
-				5BD18558205A96440035437B /* CountriesList */,
 				5BD76D972059D35700AEE740 /* DTT.entitlements */,
+				5BD18558205A96440035437B /* CountriesList */,
 				5BD76D962059B1A600AEE740 /* Login */,
 				5BD76D952059B19B00AEE740 /* FriendList */,
 				0A979148205A966900C6AB3F /* DB */,
@@ -141,8 +141,8 @@
 		5BD18558205A96440035437B /* CountriesList */ = {
 			isa = PBXGroup;
 			children = (
-				5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */,
 				5BD18559205A96560035437B /* CountriesListViewController.swift */,
+				5BD1855C205A96EC0035437B /* CountryTableViewCell.swift */,
 			);
 			path = CountriesList;
 			sourceTree = "<group>";

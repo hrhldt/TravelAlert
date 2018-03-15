@@ -14,7 +14,7 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet weak var countryEmojiLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
     
-    static var cellIdentifier = "CountryTableViewCell"
+    static let cellIdentifier = "CountryTableViewCell"
     
     var country: Country? {
         didSet {
@@ -23,8 +23,13 @@ class CountryTableViewCell: UITableViewCell {
             countryNameLabel.text = country.name
         }
     }
- 
-    func countryEmoji(fromCode code: String) -> String {
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.selectionStyle = .none
+    }
+    
+    private func countryEmoji(fromCode code: String) -> String {
         var emojiStr = ""
         
         let country = code.uppercased()
