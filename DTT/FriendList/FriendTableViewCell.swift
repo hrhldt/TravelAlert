@@ -16,10 +16,17 @@ class FriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     var name: String = "" {
         didSet {
             nameLabel.text = name
+        }
+    }
+    
+    var likeStatus: Like.Status = .dislike {
+        didSet {
+            likeButton.setTitle(likeStatus.rawValue, for: .normal)
         }
     }
     

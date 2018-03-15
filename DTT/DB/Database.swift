@@ -89,7 +89,7 @@ struct Database {
     }
     
     // MARK: - Listeners
-    static func getMatches(facebookID: String, completion: @escaping ([String]) -> Void) -> [ListenerRegistration] {
+    static func getMatches(facebookID: String, completion: @escaping ([(String, Like.Status)]) -> Void) -> [ListenerRegistration] {
         let likerQuery = db.collection(Collections.likes).whereField(Like.Fields.liker, isEqualTo: facebookID)
         let likeeQuery = db.collection(Collections.likes).whereField(Like.Fields.likee, isEqualTo: facebookID)
        
@@ -119,7 +119,10 @@ struct Database {
                         fatalError("Unable to initialize type \(Like.self) with dictionary \(document.data())")
                     }
                 }
-                completion(likers.filter({ likees.contains($0) }))
+                let returnValues = likees.map({ (friendID) -> (String, Like.Status) in
+                    return (friendID, likers.contains(friendID) ? .mutualLike : .unrequitedLike)
+                })
+                completion(returnValues)
             })
         }
         
@@ -149,7 +152,10 @@ struct Database {
                         fatalError("Unable to initialize type \(Like.self) with dictionary \(document.data())")
                     }
                 }
-                completion(likers.filter({ likees.contains($0) }))
+                let returnValues = likees.map({ (friendID) -> (String, Like.Status) in
+                    return (friendID, likers.contains(friendID) ? .mutualLike : .unrequitedLike)
+                })
+                completion(returnValues)
             })
         }
         return [reg1, reg2]

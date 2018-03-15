@@ -15,6 +15,12 @@ class Like {
         static let likee = "likee"
     }
     
+    enum Status: String {
+        case dislike = "👎"
+        case unrequitedLike = "👍"
+        case mutualLike = "🤝"
+    }
+
     let liker: String
     let likee: String
 

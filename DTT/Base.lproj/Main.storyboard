@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,7 +166,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Martin Herholdt Rasmussen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oo8-Up-dho" userLabel="NameLabel">
-                                                    <rect key="frame" x="68" y="24" width="295" height="19.5"/>
+                                                    <rect key="frame" x="68" y="24" width="248" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -177,20 +178,31 @@
                                                         <constraint firstAttribute="height" constant="1" id="rEh-cA-3QB"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ba7-2N-699">
+                                                    <rect key="frame" x="321" y="11" width="44" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="oCL-ZT-FC8"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EkA-2V-7wn" firstAttribute="leading" secondItem="SMk-ln-lii" secondAttribute="leading" constant="12" id="5fN-nF-AKM"/>
                                                 <constraint firstAttribute="bottom" secondItem="EkA-2V-7wn" secondAttribute="bottom" id="6cM-dA-T3S"/>
                                                 <constraint firstItem="zZs-EG-vOb" firstAttribute="leading" secondItem="SMk-ln-lii" secondAttribute="leading" constant="12" id="HYg-M3-aAY"/>
                                                 <constraint firstItem="oo8-Up-dho" firstAttribute="leading" secondItem="zZs-EG-vOb" secondAttribute="trailing" constant="12" id="WCo-Fw-Ypc"/>
+                                                <constraint firstItem="Ba7-2N-699" firstAttribute="trailing" secondItem="SMk-ln-lii" secondAttribute="trailingMargin" constant="5" id="evH-lu-2IP"/>
                                                 <constraint firstAttribute="trailing" secondItem="EkA-2V-7wn" secondAttribute="trailing" id="fjt-cL-53M"/>
                                                 <constraint firstAttribute="bottom" secondItem="zZs-EG-vOb" secondAttribute="bottom" constant="12" id="lAn-VA-Sz6"/>
-                                                <constraint firstAttribute="trailing" secondItem="oo8-Up-dho" secondAttribute="trailing" constant="12" id="vDK-a9-YjI"/>
+                                                <constraint firstItem="Ba7-2N-699" firstAttribute="top" secondItem="SMk-ln-lii" secondAttribute="topMargin" id="lh8-KE-JAL"/>
+                                                <constraint firstItem="EkA-2V-7wn" firstAttribute="top" secondItem="Ba7-2N-699" secondAttribute="bottom" id="uEl-cx-Rzm"/>
+                                                <constraint firstItem="Ba7-2N-699" firstAttribute="leading" secondItem="oo8-Up-dho" secondAttribute="trailing" constant="5" id="vDK-a9-YjI"/>
                                                 <constraint firstItem="oo8-Up-dho" firstAttribute="centerY" secondItem="SMk-ln-lii" secondAttribute="centerY" id="xvs-vl-EeL"/>
                                                 <constraint firstItem="zZs-EG-vOb" firstAttribute="top" secondItem="SMk-ln-lii" secondAttribute="top" constant="12" id="zJW-U6-twb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeButton" destination="Ba7-2N-699" id="EwR-uW-Uw0"/>
                                             <outlet property="nameLabel" destination="oo8-Up-dho" id="E6f-3c-D8q"/>
                                             <outlet property="profilePictureImageView" destination="zZs-EG-vOb" id="DLo-AF-ZiQ"/>
                                         </connections>
@@ -217,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNV-Yp-Njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1999" y="493"/>
+            <point key="canvasLocation" x="1997.5999999999999" y="492.50374812593708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="84t-vM-jTF">

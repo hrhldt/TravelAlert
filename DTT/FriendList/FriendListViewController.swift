@@ -15,7 +15,7 @@ class FriendListViewController: UIViewController {
  
     @IBOutlet private weak var tableView: UITableView!
     private var friends = [FBUser]()
-    private var matches: [String] = []
+    private var likes: [(String, Like.Status)] = []
     private var myID: String {
         return FBSDKAccessToken.current().userID
     }
@@ -32,9 +32,9 @@ class FriendListViewController: UIViewController {
         
         title = "Choose friends"
         loadFriends()
-        listeners = Database.getMatches(facebookID: myID) { [weak self] (ids) in
-            print("IDs received: \(ids)")
-            self?.matches = ids
+        listeners = Database.getMatches(facebookID: myID) { [weak self] (likes) in
+            print("Likes received: \(likes)")
+            self?.likes = likes
             self?.tableView.reloadData()
         }
     }
@@ -62,12 +62,19 @@ class FriendListViewController: UIViewController {
 }
 
 extension FriendListViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.cellIdentifier) as! FriendTableViewCell
         let friend = friends[indexPath.row]
         cell.name = friend.name
-        cell.contentView.backgroundColor = matches.contains(friend.id) ? UIColor.red : UIColor.white
+        
+        var likeStatus: Like.Status = .dislike
+        likes.forEach { (id, status) in
+            if id == friend.id {
+                likeStatus = status
+            }
+        }
+//        cell.contentView.backgroundColor = mutualLike ? UIColor.red : UIColor.white
+        cell.likeStatus = likeStatus
         cell.pictureURL = friend.pictureURL
         return cell
     }
