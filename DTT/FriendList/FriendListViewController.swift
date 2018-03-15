@@ -24,7 +24,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func loadFriends() {
         print(FBSDKAccessToken.current().userID)
-        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID)/friends", parameters: ["fields": "uid"], httpMethod: "GET")
+        let request = FBSDKGraphRequest(graphPath: "/\(FBSDKAccessToken.current().userID!)/friends", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
         request?.start(completionHandler: { (connection, result, error) in
             if let error = error {
                 print("error: ", error)
