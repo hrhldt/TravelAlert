@@ -10,18 +10,34 @@ import UIKit
 import FBSDKLoginKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
+    
+    var isLoggedIn = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
         loginButton.readPermissions =  ["user_friends"]
+        
+        self.tabBarController?.delegate = self
 
         if let accessToken = FBSDKAccessToken.current(), let token = accessToken.tokenString {
             loginFirebase(token: token)
         }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        if !isLoggedIn {
+            UIAlertView(title: "Wupsi!", message: "You have to log in to do this!", delegate: nil, cancelButtonTitle: "Alright").show()
+            
+            return false
+        }
+        
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,24 +54,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginFirebase(token: FBSDKAccessToken.current().tokenString)
     }
 
-    @IBAction func showFriendList() {
-        guard let _ = FBSDKAccessToken.current() else {
-            UIAlertView(title: "Error", message: "You're not logged in. You have to log in with Facebook before you can continue", delegate: nil, cancelButtonTitle: "Alright").show()
-            return
-        }
-        self.performSegue(withIdentifier: "ShowFriendList", sender: nil)
-    }
+//    @IBAction func showFriendList() {
+//        guard let _ = FBSDKAccessToken.current() else {
+//            UIAlertView(title: "Error", message: "You're not logged in. You have to log in with Facebook before you can continue", delegate: nil, cancelButtonTitle: "Alright").show()
+//            return
+//        }
+//        self.performSegue(withIdentifier: "ShowFriendList", sender: nil)
+//    }
     
     func loginFirebase(token: String) {
         let credential = FacebookAuthProvider.credential(withAccessToken: token)
         
-        Auth.auth().signIn(with: credential) { (user, error) in
+        Auth.auth().signIn(with: credential) { [weak self] (user, error) in
+            guard let `self` = self else { return }
+            
             if let error = error {
                 UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Alright").show()
                 return
             }
-            UIAlertView(title: "Success", message: "You've succesfully logged in", delegate: nil, cancelButtonTitle: "Alright").show()
-            self.showFriendList()
+            self.isLoggedIn = true
         }
     }
     
@@ -69,6 +86,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         
         UIAlertView(title: "Success", message: "You've succesfully logged out", delegate: nil, cancelButtonTitle: "Alright").show()
+        
+        isLoggedIn = false
     }
 }
 
